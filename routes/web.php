@@ -26,19 +26,24 @@ Route::group(['namespace' => 'Blog'], function () {
 
 Route::get('/admin', 'Blog\Admin\AdminController@index')->name('admin.home');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Blog\Admin'], function () {
-    Route::get('/categories', 'CategoryController@index')->name('blog.admin.category.index');
-    Route::get('/categories/create', 'CategoryController@create')->name('blog.admin.category.create');
-    Route::get('/categories/{category}/edit', 'CategoryController@edit')->name('blog.admin.category.edit');
-    Route::post('/categories', 'CategoryController@store')->name('blog.admin.category.store');
-    Route::get('/categories/{category:title}', 'CategoryController@show')->name('blog.admin.category.show');
+Route::group(['prefix' => 'admin/categories', 'namespace' => 'Blog\Admin'], function () {
+    Route::get('/', 'CategoryController@index')->name('blog.admin.category.index');
+    Route::get('/create', 'CategoryController@create')->name('blog.admin.category.create');
+    Route::post('/', 'CategoryController@store')->name('blog.admin.category.store');
+    Route::get('/{category}/edit', 'CategoryController@edit')->name('blog.admin.category.edit');
+    Route::patch('/{category}', 'CategoryController@update')->name('blog.admin.category.update');
+    Route::delete('/{category}', 'CategoryController@delete')->name('blog.admin.category.delete');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Blog\Admin'], function () {
-    Route::get('/posts', 'PostController@index')->name('blog.post.index');
-    Route::get('/posts', 'PostController@create')->name('blog.post.create');
-    Route::get('/posts/{post:title}', 'PostController@show')->name('blog.post.show');
+Route::group(['prefix' => 'admin/posts', 'namespace' => 'Blog\Admin'], function () {
+    Route::get('/', 'PostController@index')->name('blog.admin.post.index');
+    Route::get('/create', 'PostController@create')->name('blog.admin.post.create');
+    Route::post('/', 'PostController@store')->name('blog.admin.post.store');
+    Route::get('/{post}/edit', 'PostController@edit')->name('blog.admin.post.edit');
+    Route::patch('/{post}', 'PostController@update')->name('blog.admin.post.update');
+    Route::delete('/{post}', 'PostController@delete')->name('blog.admin.post.delete');
 });
+
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');

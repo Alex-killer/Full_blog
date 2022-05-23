@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="title">{{ __('Название') }}</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Введите название">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Введите название" required>
                     </div>
                 </div>
 

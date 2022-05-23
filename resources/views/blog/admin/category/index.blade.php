@@ -23,9 +23,20 @@
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->title }}</td>
                         <td>{{ $category->created_at }}</td>
-                        <td>
-                            <a href="{{ route('blog.admin.category.edit', $category->id) }}"><i class="fas fa-pen"></i></a>
-                            <a href=""><i class="fas fa-trash"></i></a>
+                        <td class="project-actions text-center">
+                            <a class="btn btn-info btn-sm" href="{{ route('blog.admin.category.edit', $category->id) }}">
+                                <i class="fas fa-pen">
+                                </i>
+                            </a>
+                            <form method="POST" action="{{ route('blog.admin.category.delete', $category->id) }}"
+                                  style="display: inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm delete-btn">
+                                    <i class="fas fa-trash">
+                                    </i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

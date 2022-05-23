@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Blog\PostRequest;
+use App\Http\Requests\Blog\CategoryRequest;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -19,7 +19,7 @@ class CategoryController extends Controller
         return view('blog.admin.category.create');
     }
 
-    public function store(PostRequest $request, Category $category)
+    public function store(CategoryRequest $request, Category $category)
     {
         $input = $request->all();
         $category->create($input);
@@ -30,5 +30,20 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view('blog.admin.category.edit', compact('category'));
+    }
+
+    public function update(CategoryRequest $request, Category $category)
+    {
+        $input = $request->all();
+        $category->update($input);
+
+        return redirect()->route('blog.admin.category.index');
+    }
+
+    public function delete(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('blog.admin.category.index');
     }
 }
