@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
 
             $table->timestamp('is_published');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
