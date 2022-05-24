@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Создание категории</h3>
+                <h3 class="card-title">Редактирование категории</h3>
             </div>
             <form method="POST" action="{{ route('blog.admin.category.update', $category->id) }}">
                 @csrf
@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="title">{{ __('Название') }}</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ $category->title }}" placeholder="Введите название" required>
+                        <input value="{{ $category->title }}" type="text" class="form-control" id="title" name="title" placeholder="Введите название" required>
                     </div>
                 </div>
 

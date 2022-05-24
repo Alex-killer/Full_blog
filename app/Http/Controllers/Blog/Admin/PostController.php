@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Blog\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -18,15 +19,31 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('blog.admin.post.create', compact('categories'));
+        return view('blog.admin.post.create', compact('categories', 'tags'));
     }
 
     public function store(PostRequest $request, Post $post)
     {
         $input = $request->all();
-        $post->update($input);
+        $post->create($input);
         dd($input);
+        return redirect()->route('blog.admin.post.index');
+    }
+
+    public function edit(Post $post)
+    {
+        $categories = Category::all();
+
+        return view('blog.admin.post.edit', compact('categories', 'post'));
+    }
+
+    public function update(PostRequest $request, Post $post)
+    {
+        $input = $request->all();
+        $post->update($input);
+
         return redirect()->route('blog.admin.post.index');
     }
 

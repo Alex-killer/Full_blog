@@ -7,6 +7,8 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href={{ asset('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- Ionicons -->
@@ -131,6 +133,7 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src={{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- ChartJS -->
 <script src={{ asset('plugins/chart.js/Chart.min.js') }}></script>
 <!-- Sparkline -->
@@ -152,16 +155,19 @@
 <!-- AdminLTE App -->
 <script src={{ asset('dist/js/adminlte.js') }}></script>
 <script>
-    $('#summernote').summernote({
-        toolbar: [
-            // [groupName, [list of button]]
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough', 'superscript', 'subscript']],
-            ['fontsize', ['fontsize']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['height', ['height']]
-        ]
+    $('.select2').select2()
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ]
+        });
     });
 </script>
 </body>

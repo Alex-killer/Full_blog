@@ -13,6 +13,8 @@
                 <tr>
                     <th style="width: 10px">#</th>
                     <th>Название</th>
+                    <th>Описание</th>
+                    <th>Категория</th>
                     <th>Дата создания</th>
                     <th style="width: 30px">Действия</th>
                 </tr>
@@ -22,6 +24,8 @@
                     <tr>
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
+                        <td>{!! substr($post->description, 0, 100) !!}</td>
+                        <td>{{ $post->category->title }}</td>
                         <td>{{ $post->created_at }}</td>
                         <td class="project-actions text-center">
                             <a class="btn btn-info btn-sm" href="{{ route('blog.admin.post.edit', $post->id) }}">
