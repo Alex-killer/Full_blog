@@ -27,22 +27,28 @@ class PostController extends Controller
     public function store(PostRequest $request, Post $post)
     {
         $input = $request->all();
-        $post->create($input);
-        dd($input);
+        $tagIds = $input['tag_ids'];
+        unset($input['tag_ids']);
+        $post->create($input)->tags()->attach($tagIds);
+
         return redirect()->route('blog.admin.post.index');
     }
 
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('blog.admin.post.edit', compact('categories', 'post'));
+        return view('blog.admin.post.edit', compact('categories', 'post', 'tags'));
     }
 
     public function update(PostRequest $request, Post $post)
     {
         $input = $request->all();
+        $tagIds = $input['tag_ids'];
+        unset($input['tag_ids']);
         $post->update($input);
+        $post->tags()->sync($tagIds);
 
         return redirect()->route('blog.admin.post.index');
     }
