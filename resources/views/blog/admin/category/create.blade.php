@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="title">{{ __('Название') }}</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Введите название" required>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Введите название" autofocus required>
                     </div>
                 </div>
 

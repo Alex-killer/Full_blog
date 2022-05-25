@@ -46,6 +46,7 @@ class PostController extends Controller
     {
         $input = $request->all();
         $tagIds = $input['tag_ids'];
+        dd($input);
         unset($input['tag_ids']);
         $post->update($input);
         $post->tags()->sync($tagIds);

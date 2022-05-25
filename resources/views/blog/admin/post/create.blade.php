@@ -11,20 +11,21 @@
                 <div class="card-body">
                     <div class="form-group col-sm-6">
                         <label for="title">{{ __('Название') }}</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Введите название">
+                        <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" placeholder="Введите название" autofocus required>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>{{ __('Выберите категорию') }}</label>
                         <select class="form-control" name="category_id" id="category_id">
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}">
+                                <option value="{{ $category->id }}"
+                                    {{ $category->id == old('category_id') ? 'selected' : '' }}>>
                                     {{ $category->title }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group col-sm-10">
                         <label for="description">{{ __('Описание') }}</label>
-                        <textarea type="text" class="form-control" id="description" name="description" placeholder="Введите описание">{{ old('description') }}</textarea>
+                        <textarea type="text" class="form-control" id="description" name="description" placeholder="Введите описание" required>{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group col-sm-6">
                         <label for="tag_id">Тэги</label>
