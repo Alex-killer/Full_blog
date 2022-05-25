@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Создание поста</h3>
+                <h3 class="card-title">{{ __('Создание поста') }}</h3>
             </div>
             <form method="POST" action="{{ route('blog.admin.post.store') }}">
                 @csrf
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Создать</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Создать') }}</button>
                 </div>
             </form>
         </div>

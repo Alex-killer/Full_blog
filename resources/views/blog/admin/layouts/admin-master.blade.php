@@ -42,7 +42,7 @@
                 <a href="{{ route('admin.home') }}" class="nav-link">Главная</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('home') }}" class="nav-link">Блог</a>
+                <a href="{{ route('blog.post.index') }}" class="nav-link">Блог</a>
             </li>
         </ul>
 
@@ -69,6 +69,35 @@
                     </form>
                 </div>
             </li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto">
+
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Войти') }}</a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Регистрация') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <input class="btn btn-light" type="submit" value="Выйти">
+                        </form>
+                    @endguest
+                </ul>
+            </div>
         </ul>
     </nav>
     <!-- /.navbar -->
@@ -89,12 +118,6 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0">Панель администратора</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
-                        </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->

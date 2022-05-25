@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Категории</h3>
+            <h3 class="card-title">{{ __('Категории') }}</h3>
         </div>
         <a class="btn btn-primary btn-sm" href="{{ route('blog.admin.category.create') }}" role="button">Создать</a>
         <!-- /.card-header -->
@@ -12,9 +12,9 @@
                 <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>Название</th>
-                    <th>Дата создания</th>
-                    <th style="width: 30px">Действия</th>
+                    <th>{{ __('Название') }}</th>
+                    <th>{{ __('Дата создания') }}</th>
+                    <th style="width: 30px">{{ __('Действия') }}</th>
                 </tr>
                 </thead>
                 <tbody>
