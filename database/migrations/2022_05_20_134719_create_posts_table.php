@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('category_id')->constrained();
             $table->string('title')->unique();
             $table->text('description');
+            $table->string('preview_image')->nullable();
             $table->boolean('active')->default(true);
 
             $table->timestamp('is_published')->nullable();;

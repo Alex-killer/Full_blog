@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CommentFactory extends Factory
+class RoleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,9 +14,8 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'post_id' => rand(1, 40),
-            'user_id' => rand(1, 5),
-            'description' => $this->faker->paragraph(2),
+            'title' => 1,
+            'title' => 'admin',
         ];
     }
 }

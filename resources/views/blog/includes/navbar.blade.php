@@ -6,8 +6,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="{{ route('home') }}">{{ __('Главная') }}</a>
                 @if (Auth::check())
+                <a class="nav-link active" aria-current="page" href="{{ route('home') }}">{{ __('Главная') }}</a>
                     <a class="nav-link" href="{{ route('blog.post.index') }}">{{ __('Блог') }}</a>
                 @endif
             </div>
@@ -33,9 +33,15 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.home') }}">{{ __('Личный кабинет') }}</a>
-                        </li>
+                        @if(Auth::user()->role_id == 1001)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.home') }}">{{ __('Кабинет администратора') }}</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('blog.personal.index') }}">{{ __('Личный кабинет') }}</a>
+                            </li>
+                        @endif
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <input class="btn btn-light" type="submit" value="Выйти">

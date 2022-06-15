@@ -14,6 +14,7 @@ class CommentController extends Controller
     {
         $input = $request->all();
         $input['post_id'] = $post->id;
+        $input['user_id'] = auth()->user()->id;
         $comment->create($input);
 
         return redirect()->route('blog.post.show', $post->title);

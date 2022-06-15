@@ -106,8 +106,8 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
         <!-- Sidebar -->
-        @include('blog.admin.includes.sidebar')
-        <!-- /.sidebar -->
+    @include('blog.personal.includes.sidebar')
+    <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
@@ -117,7 +117,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Панель администратора</h1>
+                        <h1 class="m-0">Личный кабинет</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -174,7 +174,6 @@
 <!-- Summernote -->
 <script src={{ asset('plugins/summernote/summernote-bs4.min.js') }}></script>
 <!-- overlayScrollbars -->
-<script src={{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}></script>
 <script src={{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}></script>
 <!-- AdminLTE App -->
 <script src={{ asset('dist/js/adminlte.js') }}></script>
@@ -192,9 +191,6 @@
                 ['height', ['height']]
             ]
         });
-    });
-    $(function () {
-        bsCustomFileInput.init();
     });
 </script>
 </body>

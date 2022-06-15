@@ -19,13 +19,28 @@ Route::group(['namespace' => 'Blog', 'middleware' => ['auth', 'verified']], func
     Route::get('/posts', 'PostController@index')->name('blog.post.index');
     Route::get('/post/{post:title}', 'PostController@show')->name('blog.post.show');
     Route::post('/post/{post:title}/comments', 'CommentController@store')->name('blog.post.comment.store');
+    Route::post('/post{post}/likes', 'LikeController@store')->name('blog.post.like.store');
 
     Route::get('/category/{category:title}', 'PostController@getPostsByCategory')->name('blog.category.index');
 
     Route::get('posts/tag/{tag:title}', 'PostController@getTagsByCategory')->name('blog.tag');
 });
 
-Route::get('/admin', 'Blog\Admin\AdminController@index')->name('admin.home');
+Route::group(['prefix' => 'personal', 'namespace' => 'Blog\Personal', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('/', 'HomeController@index')->name('blog.personal.index');
+
+    Route::get('/posts', 'PostController@index')->name('blog.personal.post.index');
+    Route::get('/posts/{post:title}', 'PostController@show')->name('blog.personal.post.show');
+
+    Route::get('/comment', 'CommentController@index')->name('blog.personal.comment.index');
+    Route::get('/{comment}/edit', 'CommentController@edit')->name('blog.personal.comment.edit');
+    Route::patch('/{comment}', 'CommentController@update')->name('blog.personal.comment.update');
+    Route::delete('/{comment}', 'CommentController@delete')->name('blog.personal.comment.delete');
+
+    Route::get('/likes', 'LikeController@index')->name('blog.personal.like.index');
+});
+
+Route::get('/admin', 'Blog\Admin\AdminController@index')->middleware(['auth', 'admin', 'verified'])->name('admin.home');
 
 Route::group(['prefix' => 'admin/categories', 'namespace' => 'Blog\Admin', 'middleware' => ['auth', 'admin', 'verified']], function () {
     Route::get('/', 'CategoryController@index')->name('blog.admin.category.index');

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Blog\PostRequest;
+use App\Http\Requests\Blog\Post\StoreRequest;
+use App\Http\Requests\Blog\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     public function index()
     {
@@ -24,12 +26,10 @@ class PostController extends Controller
         return view('blog.admin.post.create', compact('categories', 'tags'));
     }
 
-    public function store(PostRequest $request, Post $post)
+    public function store(StoreRequest $request)
     {
-        $input = $request->all();
-        $tagIds = $input['tag_ids'];
-        unset($input['tag_ids']);
-        $post->create($input)->tags()->attach($tagIds);
+        $input = $request->validated();
+        $this->service->store($input);
 
         return redirect()->route('blog.admin.post.index');
     }
@@ -42,16 +42,12 @@ class PostController extends Controller
         return view('blog.admin.post.edit', compact('categories', 'post', 'tags'));
     }
 
-    public function update(PostRequest $request, Post $post)
+    public function update(UpdateRequest $request, Post $post)
     {
-        $input = $request->all();
-        $tagIds = $input['tag_ids'];
-        dd($input);
-        unset($input['tag_ids']);
-        $post->update($input);
-        $post->tags()->sync($tagIds);
+        $input = $request->validated();
+        $post = $this->service->update($input, $post);
 
-        return redirect()->route('blog.admin.post.index');
+        return redirect()->route('blog.admin.post.index', compact('post'));
     }
 
     public function delete(Post $post)
