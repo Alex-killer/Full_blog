@@ -35,6 +35,9 @@
                     @else
                         @if(Auth::user()->role_id == 1001)
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('blog.personal.index') }}">{{ __('Личный кабинет') }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.home') }}">{{ __('Кабинет администратора') }}</a>
                             </li>
                         @else

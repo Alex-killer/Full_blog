@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $liked_post = auth()->user()->likedPosts;
+        $liked_post = auth()->user()->likedPosts->paginate(10);
 
         return view('blog.personal.post.index', compact('liked_post'));
     }
